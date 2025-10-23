@@ -55,6 +55,34 @@ export default function App() {
     });
   };
 
+  function onExport(): void {
+    const json = JSON.stringify({ transactions, preferences }, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "financial-projection.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function onImport(event: Event & { currentTarget: HTMLInputElement }): void {
+    event.currentTarget.files
+      ?.item(0)
+      ?.text()
+      .then(JSON.parse)
+      .then(({ transactions, preferences }) => {
+        setTransactions(() => transactions);
+        setPreferences(() => preferences);
+      })
+      .catch(alert);
+  }
+
+  function onClear(): void {
+    setTransactions(() => []);
+    setPreferences(() => ({ availableCash: 0, safetyThreshold: 0 }));
+  }
+
   function onAddTransaction(_: MouseEvent): void {
     setTransactions(
       produce((transactions) =>
@@ -133,6 +161,13 @@ export default function App() {
 
   return (
     <main>
+      <header>
+        <button onClick={onExport}>Export</button>
+        <label>
+          Import <input onChange={onImport} type="file" />
+        </label>
+        <button onClick={onClear}>Clear</button>
+      </header>
       <table>
         <thead>
           <tr>
