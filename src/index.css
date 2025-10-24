@@ -1,35 +1,35 @@
-table {
-	border-collapse: collapse;
-}
-th {
-	text-align: left;
-}
-td {
-	text-align: right;
-}
-td,th {
-	border: 1px solid black;
-	padding: 0.25em;
+:root {
+	--pico-font-size: 12px;
+	--pico-spacing: 0.25em;
+	--pico-form-element-spacing-vertical: 0.25em;
+	--pico-form-element-spacing-horizontal: 0.25em;
 }
 
-input[type="number"] {
-	width: 10ch;
-}
-.money {
-	display: flex;
-	justify-content: space-between;
-}
-.money:before {
-	content:'$';
-}
-.money.positive {
-	color: green;
-}
-.money.negative {
-	color: red;
+select {
+	width: fit-content;
 }
 
-header {
+.money::before {
+	content: '$';
+}
+
+.positive {
+	color: var(--pico-ins-color);
+}
+
+.negative {
+	color: var(--pico-del-color);
+}
+
+label[for="#upload"] {
+	display: inline-block;
+}
+
+label[for="#upload"] input {
+	display: none;
+}
+
+aside {
 	display: flex;
 	gap: 1em;
 }

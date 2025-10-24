@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lowlighter/matcha": "^3.0.1",
+    "@picocss/pico": "^2.1.1",
     "solid-js": "^1.9.9"
   },
   "devDependencies": {
