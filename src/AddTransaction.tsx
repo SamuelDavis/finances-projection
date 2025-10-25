@@ -93,7 +93,7 @@ function Modal(props: { setOpen: Setter<boolean> }) {
             <input type="number" value={1} min={0} step={1} />
           </label>
           <label>
-            <span>Period</span>
+            <span>Interval</span>
             <select name="interval" value={interval.Month}>
               <For each={Object.entries(interval)}>
                 {([label, value]) => <option value={value}>{label}</option>}
