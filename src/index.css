@@ -8,7 +8,9 @@
 
 /* Donate */
 [title="donate"] {
-	float: right;
+	position: absolute;
+	top: var(--default-gap);
+	right: var(--default-gap);
 }
 
 /* MENU */
