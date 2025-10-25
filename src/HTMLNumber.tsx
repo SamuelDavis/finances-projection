@@ -4,23 +4,28 @@ export default function HTMLNumber(props: {
   value: number;
   money?: boolean;
   precision?: number;
+  highlight?: boolean;
+  fill?: boolean;
 }) {
-  props = mergeProps({ money: false, precision: 2 }, props);
+  const merged = mergeProps(
+    { highlight: false, money: false, precision: 2, fill: true },
+    props,
+  );
+  const getClassList: () => Record<string, boolean> = () => ({
+    fill: merged.fill,
+    money: merged.money,
+    positive: merged.highlight && merged.value > 0,
+    negative: merged.highlight && merged.value < 0,
+  });
 
   return (
-    <div
-      classList={{
-        money: props.money,
-        positive: props.value > 0,
-        negative: props.value < 0,
-      }}
-    >
+    <span classList={getClassList()}>
       <span>
-        {props.value.toLocaleString("en-US", {
+        {merged.value.toLocaleString("en-US", {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })}
       </span>
-    </div>
+    </span>
   );
 }

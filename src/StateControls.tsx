@@ -25,20 +25,26 @@ export default function StateControls() {
   }
 
   return (
-    <aside>
-      <button onClick={onExport}>Export</button>
-      <label role="button" for="#upload">
-        Import
-        <input
-          id="upload"
-          role="button"
-          value="Import"
-          onChange={onImport}
-          type="file"
-          accept="application/json"
-        />
-      </label>
-      <button onClick={onClear}>Clear</button>
-    </aside>
+    <menu>
+      <li>
+        <button onClick={onExport}>Export</button>
+      </li>
+      <li>
+        <label role="button" for="#upload">
+          Import
+          <input
+            id="upload"
+            role="button"
+            value="Import"
+            onChange={onImport}
+            type="file"
+            accept="application/json"
+          />
+        </label>
+      </li>
+      <li>
+        <button onClick={onClear}>Clear</button>
+      </li>
+    </menu>
   );
 }

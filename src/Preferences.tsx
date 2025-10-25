@@ -1,4 +1,4 @@
-import { intervalKeys } from "./types";
+import { intervalKeys, type IntervalKey } from "./types";
 import { For } from "solid-js";
 import state from "./state";
 import HTMLNumber from "./HTMLNumber";
@@ -39,16 +39,10 @@ export default function Preferences() {
           </td>
           <For each={intervalKeys}>
             {(interval) => (
-              <td>
-                <HTMLNumber
-                  value={state.getTimeToZero(
-                    state.preferences.availableCash -
-                      state.preferences.safetyThreshold,
-                    interval,
-                  )}
-                  precision={1}
-                />
-              </td>
+              <Data
+                value={state.preferences.availableCash}
+                interval={interval}
+              />
             )}
           </For>
         </tr>
@@ -63,35 +57,41 @@ export default function Preferences() {
           </td>
           <For each={intervalKeys}>
             {(interval) => (
-              <td>
-                <HTMLNumber
-                  value={state.getTimeToZero(
-                    state.preferences.safetyThreshold,
-                    interval,
-                  )}
-                  precision={1}
-                />
-              </td>
+              <Data
+                value={state.preferences.safetyThreshold}
+                interval={interval}
+              />
             )}
           </For>
         </tr>
         <tr>
-          <th colspan={2}>Total Time</th>
+          <th colspan={2}>
+            Time until Available Cash Reaches Safety Threshold
+          </th>
           <For each={intervalKeys}>
             {(interval) => (
-              <td>
-                <HTMLNumber
-                  value={state.getTimeToZero(
-                    state.preferences.availableCash,
-                    interval,
-                  )}
-                  precision={1}
-                />
-              </td>
+              <Data
+                value={
+                  state.preferences.availableCash -
+                  state.preferences.safetyThreshold
+                }
+                interval={interval}
+              />
             )}
           </For>
         </tr>
       </tbody>
     </table>
+  );
+}
+
+function Data(props: { value: number; interval: IntervalKey }) {
+  const getValue = (): number =>
+    state.getTimeToZero(props.value, props.interval);
+  const getHighlight = (): boolean => !Number.isFinite(getValue());
+  return (
+    <td>
+      <HTMLNumber value={getValue()} precision={1} highlight={getHighlight()} />
+    </td>
   );
 }

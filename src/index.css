@@ -1,12 +1,55 @@
 :root {
+	--default-gap: 0.25em;
 	--pico-font-size: 12px;
-	--pico-spacing: 0.25em;
-	--pico-form-element-spacing-vertical: 0.25em;
-	--pico-form-element-spacing-horizontal: 0.25em;
+	--pico-spacing: var(--default-gap);
+	--pico-form-element-spacing-vertical: var(--default-gap);
+	--pico-form-element-spacing-horizontal: var(--default-gap);
 }
 
-select {
+/* MENU */
+menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: var(--default-gap);
+}
+
+menu label[for="#upload"] {
+	display: inline-block;
+}
+
+menu label[for="#upload"] input {
+	display: none;
+}
+
+/* TABLE */
+table td {
+	text-align: right;
+}
+
+button[title="remove"] {
+	aspect-ratio: 1/1;
+	min-width: 2em;
+}
+
+table select {
 	width: fit-content;
+}
+
+table input,
+table select {
+	margin-bottom: 0 !important;
+}
+
+section {
+	overflow: auto;
+}
+
+/* NUMBER */
+.fill {
+	display: flex;
+	justify-content: space-between;
 }
 
 .money::before {
@@ -19,17 +62,4 @@ select {
 
 .negative {
 	color: var(--pico-del-color);
-}
-
-label[for="#upload"] {
-	display: inline-block;
-}
-
-label[for="#upload"] input {
-	display: none;
-}
-
-aside {
-	display: flex;
-	gap: 1em;
 }

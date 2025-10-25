@@ -66,7 +66,7 @@ const state = createRoot(() => {
       return Number.NEGATIVE_INFINITY;
 
     const total = getTotalFor()[interval];
-    if (total > 0) return Number.POSITIVE_INFINITY;
+    if (total >= 0) return Number.POSITIVE_INFINITY;
 
     const ttl = value / Math.abs(total);
     if (ttl < 0) return Number.NEGATIVE_INFINITY;

@@ -7,12 +7,9 @@ import {
 import { For, Index } from "solid-js";
 import state from "./state";
 import HTMLNumber from "./HTMLNumber";
+import { decode } from "html-entities";
 
 export default function Transactions() {
-  function onAddTransaction(_: MouseEvent): void {
-    state.addTransaction();
-  }
-
   return (
     <table>
       <thead>
@@ -34,9 +31,19 @@ export default function Transactions() {
       </tbody>
       <tfoot>
         <tr>
-          <td colspan={999}>
-            <button onClick={onAddTransaction}>Add Transaction</button>
-          </td>
+          <th colspan={5}>Total per...</th>
+          <For each={intervalKeys}>
+            {(label) => (
+              <td>
+                <HTMLNumber
+                  value={state.getTotalFor()[label]}
+                  money
+                  highlight
+                  fill={false}
+                />
+              </td>
+            )}
+          </For>
         </tr>
       </tfoot>
     </table>
@@ -76,7 +83,9 @@ function Row(props: { index: number; transaction: Transaction }) {
   return (
     <tr>
       <td>
-        <button onClick={onRemoveTransaction}>Remove</button>
+        <button title="remove" onClick={onRemoveTransaction}>
+          {decode("&times;")}
+        </button>
       </td>
       <td>
         <input
@@ -123,6 +132,7 @@ function Row(props: { index: number; transaction: Transaction }) {
                 state.getTotalForTransactions(props.transaction) / interval
               }
               money
+              highlight
             />
           </td>
         )}
