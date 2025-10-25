@@ -29,7 +29,11 @@ export default function Preferences() {
       </thead>
       <tbody>
         <tr>
-          <th>Available Cash</th>
+          <th>
+            <span>Available Cash</span>
+            <br />
+            <small>...time to safety threshold</small>
+          </th>
           <td>
             <input
               type="number"
@@ -40,14 +44,21 @@ export default function Preferences() {
           <For each={intervalKeys}>
             {(interval) => (
               <Data
-                value={state.preferences.availableCash}
+                value={
+                  state.preferences.availableCash -
+                  state.preferences.safetyThreshold
+                }
                 interval={interval}
               />
             )}
           </For>
         </tr>
         <tr>
-          <th>Safety Threshold</th>
+          <th>
+            <span>Safety Threshold</span>
+            <br />
+            <small>...time to zero</small>
+          </th>
           <td>
             <input
               type="number"
@@ -65,16 +76,11 @@ export default function Preferences() {
           </For>
         </tr>
         <tr>
-          <th colspan={2}>
-            Time until Available Cash reaches Safety Threshold
-          </th>
+          <th colspan={2}>Total Time until Available Cash reaches Zero</th>
           <For each={intervalKeys}>
             {(interval) => (
               <Data
-                value={
-                  state.preferences.availableCash -
-                  state.preferences.safetyThreshold
-                }
+                value={state.preferences.availableCash}
                 interval={interval}
               />
             )}
