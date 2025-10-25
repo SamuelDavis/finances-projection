@@ -1,16 +1,15 @@
 :root {
-	--default-gap: 0.25em;
 	--pico-font-size: 12px;
-	--pico-spacing: var(--default-gap);
-	--pico-form-element-spacing-vertical: var(--default-gap);
-	--pico-form-element-spacing-horizontal: var(--default-gap);
+	--pico-spacing: 0.25em;
+	--pico-form-element-spacing-vertical: var(--pico-spacing);
+	--pico-form-element-spacing-horizontal: var(--pico-spacing);
 }
 
 /* Donate */
 [title="donate"] {
 	position: absolute;
-	top: var(--default-gap);
-	right: var(--default-gap);
+	top: var(--pico-spacing);
+	right: var(--pico-spacing);
 }
 
 /* MENU */
@@ -19,7 +18,12 @@ menu {
 	margin: 0;
 	padding: 0;
 	display: flex;
-	gap: var(--default-gap);
+	gap: var(--pico-spacing);
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
 }
 
 menu label[for="upload"] {

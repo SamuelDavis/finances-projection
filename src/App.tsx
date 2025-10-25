@@ -17,13 +17,14 @@ export default function App() {
           <section>
             <header>
               <h2>Transactions</h2>
+              <StateControls />
             </header>
-            <StateControls />
             <Transactions />
             <Show when={state.transactions.length > 0}>
               <AddTransaction />
             </Show>
           </section>
+          <hr />
           <section>
             <header>
               <h2>Expectations</h2>
