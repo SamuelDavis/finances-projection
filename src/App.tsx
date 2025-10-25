@@ -34,6 +34,9 @@ export default function App() {
         </article>
       </main>
       <footer>
+        <small>
+          This app collects no data. All data is stored locally on your machine.
+        </small>
         <Donate />
       </footer>
     </>
