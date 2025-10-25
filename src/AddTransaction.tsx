@@ -79,7 +79,7 @@ function Modal(props: { setOpen: Setter<boolean> }) {
           <p>
             <strong>Add Transaction</strong>
           </p>
-          <button aria-label="Close" rel="prev" onClick={onClose}></button>
+          <a role="button" aria-label="Close" rel="prev" onClick={onClose}></a>
         </header>
         <form onSubmit={onSubmit}>
           <label>
