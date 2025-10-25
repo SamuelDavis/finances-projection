@@ -9,12 +9,50 @@ import {
 } from "./types";
 
 const state = createRoot(() => {
-  const savedTransactions = localStorage.getItem("transactions") ?? "[]";
+  const savedTransactions =
+    localStorage.getItem("transactions") ??
+    `[
+    {
+      "counterparty": "Rent",
+      "amount": -1350.50,
+      "multiplier": 1,
+      "interval": 12
+    },
+    {
+      "counterparty": "Groceries",
+      "amount": -85.95,
+      "multiplier": 1,
+      "interval": 52
+    },
+    {
+      "counterparty": "Insurance",
+      "amount": -450.72,
+      "multiplier": 1,
+      "interval": 12
+    },
+    {
+      "counterparty": "Gas",
+      "amount": -55.99,
+      "multiplier": 1,
+      "interval": 52
+    },
+    {
+      "counterparty": "Paycheck",
+      "amount": 1050.25,
+      "multiplier": 2,
+      "interval": 52
+    }
+  ]`;
   const [transactions, setTransactions] = createStore<Transaction[]>(
     JSON.parse(savedTransactions),
   );
 
-  const savedPreferences = localStorage.getItem("preferences") ?? "null";
+  const savedPreferences =
+    localStorage.getItem("preferences") ??
+    `{
+    "availableCash": 1500,
+    "safetyThreshold": 500
+  }`;
   const [preferences, setPreferences] = createStore<Preferences>(
     JSON.parse(savedPreferences) ?? { availableCash: 0, safetyThreshold: 0 },
   );
