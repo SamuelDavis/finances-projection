@@ -16,26 +16,10 @@ export default function Transactions() {
       <thead>
         <tr>
           <th></th>
-          <th>
-            <span>Counterparty</span>
-            <br />
-            <small>Income/Expense</small>
-          </th>
-          <th>
-            <span>Amount</span>
-            <br />
-            <small>{decode("&minus;")} for expenses</small>
-          </th>
-          <th>
-            <span>Period</span>
-            <br />
-            <small>Every...</small>
-          </th>
-          <th>
-            <span>Interval</span>
-            <br />
-            <small>...so often</small>
-          </th>
+          <th>Counterparty</th>
+          <th>Amount</th>
+          <th>Period</th>
+          <th>Interval</th>
           <For each={intervalKeys}>{(interval) => <th>{interval}</th>}</For>
         </tr>
       </thead>
