@@ -6,6 +6,18 @@
 	--pico-form-element-spacing-horizontal: var(--default-gap);
 }
 
+body {
+	position: relative;
+	min-height: 100vh;
+}
+
+/* Donate */
+[title="donate"] {
+	position: absolute;
+	bottom: var(--default-gap);
+	right: var(--default-gap);
+}
+
 /* MENU */
 menu {
 	list-style-type: none;

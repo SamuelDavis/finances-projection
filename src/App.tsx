@@ -2,6 +2,7 @@ import StateControls from "./StateControls";
 import Transactions from "./Transactions";
 import Preferences from "./Preferences";
 import state from "./state";
+import Donate from "./Donate";
 
 export default function App() {
   function onAddTransaction(_: MouseEvent): void {
@@ -31,6 +32,7 @@ export default function App() {
           </section>
         </article>
       </main>
+      <Donate />
     </>
   );
 }
