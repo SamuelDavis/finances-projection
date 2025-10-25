@@ -8,6 +8,7 @@ import { For, Index } from "solid-js";
 import state from "./state";
 import HTMLNumber from "./HTMLNumber";
 import { decode } from "html-entities";
+import AddTransaction from "./AddTransaction";
 
 export default function Transactions() {
   return (
@@ -23,7 +24,16 @@ export default function Transactions() {
         </tr>
       </thead>
       <tbody>
-        <Index each={state.transactions}>
+        <Index
+          each={state.transactions}
+          fallback={
+            <tr>
+              <th colspan={9999}>
+                <AddTransaction />
+              </th>
+            </tr>
+          }
+        >
           {(getTransaction, index) => (
             <Row transaction={getTransaction()} index={index} />
           )}

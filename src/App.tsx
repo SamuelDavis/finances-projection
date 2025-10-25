@@ -3,12 +3,10 @@ import Transactions from "./Transactions";
 import Preferences from "./Preferences";
 import state from "./state";
 import Donate from "./Donate";
+import AddTransaction from "./AddTransaction";
+import { Show } from "solid-js";
 
 export default function App() {
-  function onAddTransaction(_: MouseEvent): void {
-    state.addTransaction();
-  }
-
   return (
     <>
       <header>
@@ -22,7 +20,9 @@ export default function App() {
             </header>
             <StateControls />
             <Transactions />
-            <button onClick={onAddTransaction}>Add Transaction</button>
+            <Show when={state.transactions.length > 0}>
+              <AddTransaction />
+            </Show>
           </section>
           <section>
             <header>
