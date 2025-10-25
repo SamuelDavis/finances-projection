@@ -80,7 +80,7 @@ function Row(props: { index: number; transaction: Transaction }) {
     event: Event & { currentTarget: HTMLInputElement },
   ): void {
     state.updateTransaction(props.index, {
-      multiplier: event.currentTarget.valueAsNumber,
+      multiplier: Math.max(0, event.currentTarget.valueAsNumber),
     });
   }
   function onInterval(
