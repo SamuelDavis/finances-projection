@@ -59,10 +59,8 @@ function Modal(props: { setOpen: Setter<boolean> }) {
   }
 
   function onSubmit(event: Event & { currentTarget: HTMLFormElement }) {
-    console.debug(event);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.debug(data);
     state.addTransaction({
       counterparty: data.get("counterparty")?.toString() ?? "",
       amount: Number(data.get("amount") ?? 0),
@@ -92,15 +90,13 @@ function Modal(props: { setOpen: Setter<boolean> }) {
           </label>
           <label>
             <span>Period</span>
-            <input type="number" min={0} step={1} />
+            <input type="number" value={1} min={0} step={1} />
           </label>
           <label>
             <span>Period</span>
-            <select>
+            <select name="interval" value={interval.Month}>
               <For each={Object.entries(interval)}>
-                {([label, interval]) => (
-                  <option value={interval}> {label} </option>
-                )}
+                {([label, value]) => <option value={value}>{label}</option>}
               </For>
             </select>
           </label>

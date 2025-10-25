@@ -86,7 +86,7 @@ function Row(props: { index: number; transaction: Transaction }) {
   function onInterval(
     event: Event & { currentTarget: HTMLSelectElement },
   ): void {
-    const interval = Number(event.currentTarget.value) as IntervalValue;
+    const interval = event.currentTarget.value as unknown as IntervalValue;
     state.updateTransaction(props.index, { interval });
   }
 
@@ -123,10 +123,10 @@ function Row(props: { index: number; transaction: Transaction }) {
       <td>
         <select onChange={onInterval}>
           <For each={Object.entries(interval)}>
-            {([label, interval]) => (
+            {([label, value]) => (
               <option
-                value={interval}
-                selected={interval === props.transaction.interval}
+                value={value}
+                selected={value === props.transaction.interval}
               >
                 {label}
               </option>
