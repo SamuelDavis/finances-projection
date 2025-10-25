@@ -30,7 +30,7 @@ export default function AddTransaction() {
         Add Transaction
       </button>
       <Show when={getOpen()}>
-        <Portal>
+        <Portal mount={document.body}>
           <Modal setOpen={setOpen} />
         </Portal>
       </Show>
