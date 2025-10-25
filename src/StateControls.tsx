@@ -27,11 +27,11 @@ export default function StateControls() {
   return (
     <menu>
       <li>
-        <button onClick={onExport}>Export</button>
+        <button onClick={onExport}>Save</button>
       </li>
       <li>
         <label role="button" for="upload">
-          Import
+          Load
           <input
             id="upload"
             role="button"
