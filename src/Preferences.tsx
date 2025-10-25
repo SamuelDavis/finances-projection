@@ -66,7 +66,7 @@ export default function Preferences() {
         </tr>
         <tr>
           <th colspan={2}>
-            Time until Available Cash Reaches Safety Threshold
+            Time until Available Cash reaches Safety Threshold
           </th>
           <For each={intervalKeys}>
             {(interval) => (
