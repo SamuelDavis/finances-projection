@@ -32,7 +32,9 @@ export default function App() {
           </section>
         </article>
       </main>
-      <Donate />
+      <footer>
+        <Donate />
+      </footer>
     </>
   );
 }
