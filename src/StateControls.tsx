@@ -30,7 +30,7 @@ export default function StateControls() {
         <button onClick={onExport}>Export</button>
       </li>
       <li>
-        <label role="button" for="#upload">
+        <label role="button" for="upload">
           Import
           <input
             id="upload"

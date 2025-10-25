@@ -27,11 +27,11 @@ menu {
 	gap: var(--default-gap);
 }
 
-menu label[for="#upload"] {
+menu label[for="upload"] {
 	display: inline-block;
 }
 
-menu label[for="#upload"] input {
+menu label[for="upload"] input {
 	display: none;
 }
 
