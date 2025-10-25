@@ -16,10 +16,10 @@ export default function App() {
       </header>
       <main>
         <article>
-          <header>
-            <h2>Transactions</h2>
-          </header>
           <section>
+            <header>
+              <h2>Transactions</h2>
+            </header>
             <StateControls />
             <Transactions />
             <button onClick={onAddTransaction}>Add Transaction</button>
