@@ -1,5 +1,5 @@
 import { HTMLNumber, type ExtendProps } from "@samueldavis/solidlib";
-import { Intervals, type Transaction } from "./types";
+import { Periods, type Transaction } from "./types";
 import { For, splitProps, type ComponentProps } from "solid-js";
 import { derivePhrase, pluralize } from "./utilities";
 
@@ -16,11 +16,11 @@ export function TransactionRow(
         <input type="text" value={local.transaction.counterparty} readonly />
       </td>
       <td>
-        <input type="number" value={local.transaction.frequency} readonly />
+        <input type="number" value={local.transaction.interval} readonly />
       </td>
       <td>
         <select>
-          <For each={Object.keys(Intervals)}></For>
+          <For each={Object.keys(Periods)}></For>
         </select>
       </td>
     </tr>
@@ -38,7 +38,7 @@ export function TransactionPhrase(
     return undefined;
   };
   const getInterval = () =>
-    pluralize(local.transaction.interval, local.transaction.amount);
+    pluralize(local.transaction.period, local.transaction.amount);
 
   return (
     <span data-sentence {...parent}>
@@ -52,7 +52,7 @@ export function TransactionPhrase(
       <span>{getPhrase().preposition}</span>
       <span>{local.transaction.counterparty}</span>
       <span>every</span>
-      <HTMLNumber value={local.transaction.frequency} precision={0} />
+      <HTMLNumber value={local.transaction.interval} precision={0} />
       <span>{getInterval()}</span>
       <span>.</span>
     </span>

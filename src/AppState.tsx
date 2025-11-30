@@ -10,6 +10,8 @@ type AppState = {
   getTransactions: () => Transaction[];
   addTransaction: (value: Transaction) => void;
   removeTransaction: (value: Transaction) => void;
+  replaceTransaction: (original: Transaction, value: Transaction) => void;
+  clearTransactions: () => void;
 };
 
 const AppStateContext = createContext<AppState>();
@@ -17,33 +19,44 @@ const AppStateContext = createContext<AppState>();
 export function AppStateProvider(props: ParentProps) {
   const [getTransactions, setTransactions] = createSignal<Transaction[]>([
     {
-      counterparty: "Work",
-      amount: 1250,
-      frequency: 2,
-      interval: "Week",
+      counterparty: "Work  aaa bbb ccc ddd eee fff ggg hhh iii jjj kkklll mmm",
+      amount: 1_000_250,
+      interval: 100,
+      period: "Week",
     },
     {
       counterparty: "Insurance",
       amount: -500,
-      frequency: 6,
-      interval: "Month",
+      interval: 6,
+      period: "Month",
     },
   ]);
-  const addTransaction = (value: Transaction): void => {
-    setTransactions((transactions) => [...transactions, value]);
-  };
-  const removeTransaction = (value: Transaction): void => {
-    setTransactions((transactions) =>
-      transactions.filter(
-        (transaction) => JSON.stringify(transaction) !== JSON.stringify(value),
-      ),
-    );
-  };
 
   const value: AppState = {
     getTransactions,
-    addTransaction,
-    removeTransaction,
+    addTransaction(value: Transaction): void {
+      const jsonValue = JSON.stringify(value);
+      setTransactions((txs) =>
+        txs.some((tx) => JSON.stringify(tx) === jsonValue)
+          ? txs
+          : [...txs, value],
+      );
+    },
+    removeTransaction(value: Transaction): void {
+      const jsonValue = JSON.stringify(value);
+      setTransactions((txs) =>
+        txs.filter((tx) => JSON.stringify(tx) !== jsonValue),
+      );
+    },
+    replaceTransaction(value: Transaction): void {
+      const jsonValue = JSON.stringify(value);
+      setTransactions((txs) =>
+        txs.map((tx) => (JSON.stringify(tx) === jsonValue ? value : tx)),
+      );
+    },
+    clearTransactions(): void {
+      setTransactions([]);
+    },
   };
 
   return (
@@ -55,7 +68,6 @@ export function AppStateProvider(props: ParentProps) {
 
 export function useAppState() {
   const ctx = useContext(AppStateContext);
-  if (!ctx)
-    throw new Error("useAppState must be used inside <AppStateProvider>");
-  return ctx;
+  if (ctx) return ctx;
+  throw new Error("useAppState must be used inside <AppStateProvider>");
 }
