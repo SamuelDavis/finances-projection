@@ -26,13 +26,7 @@ import {
   type Transaction,
   type Verb,
 } from "./types";
-import {
-  deriveAmount,
-  derivePhrase,
-  deriveTruncation,
-  onInput,
-  pluralize,
-} from "./utilities";
+import { deriveAmount, derivePhrase, onInput, pluralize } from "./utilities";
 
 export default function App() {
   return (

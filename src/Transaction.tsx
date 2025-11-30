@@ -1,6 +1,6 @@
 import { HTMLNumber, type ExtendProps } from "@samueldavis/solidlib";
-import { Periods, type Transaction } from "./types";
-import { For, splitProps, type ComponentProps } from "solid-js";
+import { type Transaction } from "./types";
+import { splitProps, type ComponentProps } from "solid-js";
 import { derivePhrase, pluralize } from "./utilities";
 
 export function TransactionRow(
@@ -17,11 +17,6 @@ export function TransactionRow(
       </td>
       <td>
         <input type="number" value={local.transaction.interval} readonly />
-      </td>
-      <td>
-        <select>
-          <For each={Object.keys(Periods)}></For>
-        </select>
       </td>
     </tr>
   );
